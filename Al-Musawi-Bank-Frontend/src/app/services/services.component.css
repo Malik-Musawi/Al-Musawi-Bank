@@ -1,0 +1,84 @@
+.services-container {
+    color: #333;
+    background-color: #fff;
+    padding-bottom: 2rem;
+  }
+  
+  .services-header {
+    background-color: #006699;
+    color: white;
+  }
+  
+  .services-header h1 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .services-header p {
+    font-size: 1.25rem;
+  }
+  
+  .services-content .service-item {
+    margin-bottom: 2rem;
+  }
+  
+  .services-content .service-item h3 {
+    color: #003366;
+    margin-bottom: 1rem;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+  }
+  
+  #investmentChart {
+    height: 400px; 
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 15px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .services-header p {
+      font-size: 1rem;
+    }
+  
+    .services-content .service-item h3 {
+      font-size: 1.25rem;
+    }
+
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .table-responsive > .table-bordered {
+      border: 0;
+    }
+
+    #investmentChart {
+      height: 300px; 
+    }
+  }
+  

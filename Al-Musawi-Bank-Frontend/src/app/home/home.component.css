@@ -1,0 +1,176 @@
+/* Home Component Styles */
+.home-container .banner {
+    background-color: #003366;
+    color: white;
+  }
+  
+  .home-container .banner h1 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .home-container .banner p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .home-container .banner a.btn {
+    background-color: #006699;
+    border: none;
+  }
+  
+  .home-container .features .card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-container .features .card-title {
+    color: #003366;
+    font-weight: bold;
+  }
+  
+  .home-container .features .card-text {
+    color: #555;
+  }
+
+  .home-container .how-it-works {
+    background-color: #f8f9fa; /* Light gray background */
+  }
+  
+  .home-container .how-it-works h2 {
+    color: #003366;
+  }
+  
+  /* Testimonials Section */
+  .home-container .testimonials h2 {
+    color: #003366;
+  }
+  
+  /* Latest News Section */
+  .home-container .latest-news {
+    background-color: #e9ecef; /* Another shade of light gray for contrast */
+  }
+  
+  .home-container .latest-news h2 {
+    color: #003366;
+  }
+  
+  /* Utility classes for text alignment and padding */
+  .text-center {
+    text-align: center;
+  }
+  
+  .bg-light {
+    background-color: #f8f9fa;
+  }
+  
+  .py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .how-step img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .how-step h5 {
+    color: #003366;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Testimonials Section */
+  #testimonialCarousel {
+    position: relative;
+    background: #fff;
+    padding: 2rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .testimonial-text {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: #555;
+  }
+  
+  /* Latest News Section */
+  .news-article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  .news-article h5 {
+    color: #003366;
+    margin-top: 0.75rem;
+  }
+
+  .news-article {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .news-article:hover {
+    transform: translateY(-10px);
+  }
+  
+  .carousel-item {
+    min-height: 200px; /* Adjust based on content */
+  }
+
+
+  .star {
+    font-size: 2rem;
+    color: #d3d3d3;
+    cursor: pointer;
+  }
+  
+  .star.rated {
+    color: #ffca28;
+  }
+  
+  .add-review-form {
+    margin-top: 2rem;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-control {
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .home-container .banner {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    .add-review-form {
+        padding: 1rem;
+      }
+  }
+  

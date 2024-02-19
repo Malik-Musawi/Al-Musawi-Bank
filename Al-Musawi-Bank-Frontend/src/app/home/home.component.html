@@ -1,0 +1,95 @@
+<!-- Home Component Template -->
+<div class="home-container">
+    <!-- Banner Section -->
+    <div class="banner text-center py-5 mb-4">
+        <h1>Welcome to Al-Musawi Bank</h1>
+        <p>Your trusted partner in financial success.</p>
+        <button class="btn btn-primary btn-lg" (click)="onServicesButtonClick()">Our Services</button>
+      </div>
+
+    <!-- Features Section -->
+    <div class="features py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Feature 1 -->
+                <!-- ... existing feature cards ... -->
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works py-5 bg-light">
+        <div class="container text-center">
+          <h2>How It Works</h2>
+          <p class="mb-4">Discover how easy it is to manage your finances with Al-Musawi Bank.</p>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="how-step">
+                <img src="assets/how-register.svg" alt="Register" class="mb-3" />
+                <h5>1. Register</h5>
+                <p>Create your account online in just a few easy steps.</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="how-step">
+                <img src="assets/how-deposit.svg" alt="Deposit" class="mb-3" />
+                <h5>2. Deposit</h5>
+                <p>Deposit money using various methods, including direct deposit or online transfer.</p>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="how-step">
+                <img src="assets/how-transact.svg" alt="Transact" class="mb-3" />
+                <h5>3. Transact</h5>
+                <p>Start transacting and managing your finances with complete control.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Testimonials Section -->
+    <div class="testimonials py-5">
+        <div class="container text-center">
+            <h2>Customer Testimonials</h2>
+            <div *ngFor="let testimonial of testimonials">
+                <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                <footer class="blockquote-footer">{{ testimonial.author }}</footer>
+                <div class="star-rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating(star)"
+                                [class.rated]="star <= testimonial.rating">&#9733;</span>
+                </div>
+            </div>
+            <!-- Add Review Button -->
+            <button class="btn btn-outline-primary" (click)="toggleTestimonialForm()">Add Review</button>
+            <!-- Testimonial Form -->
+            <div *ngIf="showTestimonialForm">
+                <form (ngSubmit)="addTestimonial()">
+                    <input type="text" class="form-control" [(ngModel)]="newTestimonial.author" name="author" placeholder="Your Name" required>
+                    <textarea class="form-control" [(ngModel)]="newTestimonial.text" name="text" placeholder="Your Review" required></textarea>
+                    <div class="star-rating">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setRating(star)"
+                                    [class.rated]="star <= newTestimonial.rating">&#9733;</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Latest News Section -->
+    <div class="latest-news py-5 bg-light">
+        <div class="container">
+          <h2>Latest News</h2>
+          <div class="row">
+            <!-- News Article 1 -->
+            <div class="col-md-4 mb-3">
+              <div class="news-article">
+                <img src="assets/news-branch-opening.jpg" alt="New Branch Opening" class="mb-3" />
+                <h5>New Branch Opening</h5>
+                <p>We are excited to announce a new branch opening in downtown.</p>
+              </div>
+            </div>
+            <!-- Add more news articles as needed -->
+          </div>
+        </div>
+      </div>
+<router-outlet></router-outlet>

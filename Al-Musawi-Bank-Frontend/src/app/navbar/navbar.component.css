@@ -1,0 +1,59 @@
+/* Navbar styles */
+.navbar {
+    background-color: #003366; /* Deep blue color */
+    border-bottom: 3px solid #006699; /* Slightly lighter blue for a subtle contrast */
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem; /* Larger size for branding */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #ffffff; /* White text for contrast */
+    margin-right: 15px; /* Spacing between links */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #006699; /* Lighter blue on hover for interactivity */
+    border-radius: 5px; /* Slightly rounded edges for a modern look */
+  }
+  
+  /* Active link styles */
+  .navbar-nav .nav-item.active .nav-link,
+  .navbar-nav .nav-link.active {
+    background-color: #005580; /* Even darker blue to highlight the active page */
+    color: #fff;
+  }
+  
+  /* Responsive navbar toggler icon */
+  .navbar-toggler {
+    border-color: #006699; /* Border color for the toggle button */
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  /* Ensure that the navigation links are vertically centered */
+  .navbar-nav {
+    align-items: center;
+  }
+  
+  /* Custom styles for the container to manage padding */
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Style for Sign In and Sign Up buttons if you want them to stand out */
+  .navbar .btn-outline-primary {
+    color: #fff;
+    border-color: #fff; /* White border for the buttons */
+  }
+  
+  .navbar .btn-outline-primary:hover {
+    background-color: #fff;
+    color: #003366; /* Invert colors on hover */
+  }
+  
