@@ -33,7 +33,7 @@ Run npm install to install the required npm packages.
 Environment Configuration:
 
 Open the environment.ts file.
-Ensure the API URL matches your backend setup (by default, it should be http://localhost:5132/api).
+Ensure the API URL matches your backend setup (by default, it should be http://localhost:5240/api).
 Start the Angular Application:
 
 Run ng serve to start the Angular application.
