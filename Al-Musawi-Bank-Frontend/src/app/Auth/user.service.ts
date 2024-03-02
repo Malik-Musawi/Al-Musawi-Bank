@@ -18,5 +18,17 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
+  changePassword(oldPassword: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/change-password`, { oldPassword, newPassword });
+  }
+
+  getCurrentUserId(): number | null {
+    const userItem = localStorage.getItem('user');
+    if (userItem) {
+      const user = JSON.parse(userItem);
+      return user?.userId || null;
+    }
+    return null;
+  }
   // Add other user related methods here
 }

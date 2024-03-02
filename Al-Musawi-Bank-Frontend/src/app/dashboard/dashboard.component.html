@@ -1,1 +1,22 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <section class="account-summary">
+      <h2>Account Summary</h2>
+      <div *ngFor="let account of accounts">
+        <p><strong>Account ID:</strong> {{account.id}}</p>
+        <p><strong>Balance:</strong> {{account.balance}}</p>
+      </div>
+    </section>
+    
+    <section class="transaction-history">
+      <h2>Recent Transactions</h2>
+      <div *ngFor="let transaction of transactions">
+        <p>{{transaction.date}}: {{transaction.description}} - {{transaction.amount}}</p>
+      </div>
+    </section>
+  
+    <section class="password-change">
+      <h2>Change Password</h2>
+      <!-- Form for password change -->
+    </section>
+  </div>
+  

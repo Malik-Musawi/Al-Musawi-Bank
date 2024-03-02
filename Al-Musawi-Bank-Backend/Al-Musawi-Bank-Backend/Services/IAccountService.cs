@@ -7,5 +7,6 @@ public interface IAccountService
     Task<ServiceResponse<AccountCreationDto>> CreateAccountAsync(AccountCreationDto accountCreationDto);
     Task<AccountDetailDto> GetAccountAsync(int accountId); // AccountDetailDto needs to be defined
     Task<ServiceResponse<AccountUpdateDto>> UpdateAccountAsync(AccountUpdateDto accountUpdateDto);
+    Task<ServiceResponse<List<AccountDto>>> GetAccountsByUserAsync(int userId);
     // Other methods as necessary
 }

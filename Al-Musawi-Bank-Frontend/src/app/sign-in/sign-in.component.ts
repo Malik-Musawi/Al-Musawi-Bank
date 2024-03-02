@@ -22,16 +22,14 @@ export class SignInComponent implements OnInit {
       this.errorMessage = 'Please fill in all fields';
       return;
     }
-
-    this.userService.login(this.loginData).subscribe({
+  
+    this.authService.login(this.loginData.email, this.loginData.password).subscribe({
       next: (response) => {
-        // Assuming the response contains the user data and token
-        this.authService.login(response.user, response.token);
-        this.router.navigate(['/dashboard']); // Redirect to the dashboard
+        this.router.navigate(['/dashboard']); // Redirect on successful login
       },
       error: (error) => {
-        console.error('Login failed', error);
         this.errorMessage = 'Login failed. Please check your credentials.';
+        console.error('Login failed:', error);
       }
     });
   }

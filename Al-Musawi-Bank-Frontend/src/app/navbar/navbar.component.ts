@@ -17,18 +17,13 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe(loggedIn => {
-      this.isLoggedIn = loggedIn;
+    this.authService.isLoggedIn().subscribe(loggedInStatus => {
+      this.isLoggedIn = loggedInStatus;
     });
-
+  
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
     });
-
-    // Manually check the initial login status
-    if (!this.authService.isAuthenticated()) {
-      this.authService.logout();
-    }
   }
 
   onLogout(): void {

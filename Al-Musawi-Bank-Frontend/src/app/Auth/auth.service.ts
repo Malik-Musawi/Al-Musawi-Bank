@@ -1,65 +1,82 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {jwtDecode} from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedInStatus = new BehaviorSubject<boolean>(false);
-  private currentUserSubject = new BehaviorSubject<any>(null);
-  private tokenKey = 'token';
+  private loggedInStatus = new BehaviorSubject<boolean>(this.hasToken());
+  private currentUserSubject = new BehaviorSubject<any>(this.getUser());
 
-  constructor(private http: HttpClient) {
-    this.initializeAuthState();
+  constructor(private http: HttpClient) {}
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token');
   }
 
-  private initializeAuthState(): void {
-    const token = this.getTokenFromStorage();
-    const tokenIsValid = this.tokenIsValid(token);
-    this.loggedInStatus.next(tokenIsValid);
-    if (tokenIsValid) {
-      const user = this.getCurrentUserFromStorage();
-      this.currentUserSubject.next(user);
+  private getUser(): any {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        return decoded;
+      } catch (error) {
+        console.error('Error decoding token', error);
+        return null;
+      }
     } else {
+      return null;
+    }
+  }
+
+setToken(token: string): void {
+  if (token) {
+    localStorage.setItem('token', token);
+  } else {
+    localStorage.removeItem('token');
+  }
+}
+
+setUser(user: any): void {
+  if (user) {
+    localStorage.setItem('user', JSON.stringify(user));
+  } else {
+    localStorage.removeItem('user');
+  }
+}
+
+
+login(email: string, password: string): Observable<any> {
+  const loginUrl = 'http://localhost:5240/api/User/login'; // Corrected URL
+
+  return this.http.post(loginUrl, { email, password }).pipe(
+    map((response: any) => {
+      // Assuming response format is { token: string, userData: any }
+      this.setToken(response.token);
+      this.setUser(response.userData);
+      this.loggedInStatus.next(true);
+      this.currentUserSubject.next(response.userData);
+      return response;
+    }),
+    catchError(error => {
+      console.error('Login error:', error);
+      throw error;
+    })
+  );
+}
+
+  
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    if (this.currentUserSubject.getValue()) {
       this.currentUserSubject.next(null);
     }
-  }
-
-  private getTokenFromStorage(): string | null {
-    return sessionStorage.getItem(this.tokenKey);
-  }
-
-  private tokenIsValid(token: string | null): boolean {
-    if (!token) {
-      return false;
-    }
-    try {
-      const decodedToken = jwtDecode<any>(token);
-      return typeof decodedToken.exp !== 'undefined' && decodedToken.exp > Date.now() / 1000;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  login(email: string, password: string): Observable<any> {
-    const loginUrl = 'http://localhost:5240/login';
-    return this.http.post(loginUrl, { email, password });
-  }
-
-  handleLoginSuccess(token: string, userData: any): void {
-    sessionStorage.setItem(this.tokenKey, token);
-    sessionStorage.setItem('user', JSON.stringify(userData));
-    this.currentUserSubject.next(userData);
-    this.loggedInStatus.next(true);
-  }
-
-  logout(): void {
-    sessionStorage.removeItem(this.tokenKey);
-    sessionStorage.removeItem('user');
-    this.currentUserSubject.next(null);
     this.loggedInStatus.next(false);
+    this.currentUserSubject.next(null);
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -68,15 +85,5 @@ export class AuthService {
 
   getCurrentUser(): Observable<any> {
     return this.currentUserSubject.asObservable();
-  }
-
-  isAuthenticated(): boolean {
-    const token = this.getTokenFromStorage();
-    return this.tokenIsValid(token);
-  }
-
-  private getCurrentUserFromStorage(): any {
-    const userJson = sessionStorage.getItem('user');
-    return userJson ? JSON.parse(userJson) : null;
   }
 }

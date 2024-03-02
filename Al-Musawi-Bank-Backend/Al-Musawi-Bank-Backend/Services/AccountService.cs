@@ -56,5 +56,29 @@ public class AccountService : IAccountService
         };
     }
 
+    public async Task<ServiceResponse<List<AccountDto>>> GetAccountsByUserAsync(int userId)
+    {
+        // Implement logic to retrieve accounts by user
+        // For instance, find all accounts with the given user ID
+        var accounts = await _context.Accounts.Where(a => a.UserId == userId).ToListAsync();
+        if (accounts == null || accounts.Count == 0)
+            return new ServiceResponse<List<AccountDto>> { IsSuccess = false, Message = "No accounts found for the user." };
+
+        var accountDtos = accounts.Select(a => new AccountDto
+        {
+            AccountId = a.AccountId,
+            UserId = a.UserId,
+            Balance = a.Balance,
+            AccountNumber = a.AccountNumber
+            // Map other details as necessary
+        }).ToList();
+
+        return new ServiceResponse<List<AccountDto>>
+        {
+            Data = accountDtos,
+            IsSuccess = true,
+            Message = "Accounts retrieved successfully."
+        };
+    }
     // Implement other methods as needed...
 }

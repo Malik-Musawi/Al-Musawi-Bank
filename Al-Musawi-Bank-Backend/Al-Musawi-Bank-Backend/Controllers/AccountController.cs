@@ -47,5 +47,15 @@ public class AccountController : ControllerBase
         return BadRequest(result);
     }
 
+    [Authorize]
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetAccountsByUser(int userId)
+    {
+        var result = await _accountService.GetAccountsByUserAsync(userId);
+        if (result.IsSuccess)
+            return Ok(result);
+        return NotFound(result);
+    }
+
     // Additional account-related methods...
 }
