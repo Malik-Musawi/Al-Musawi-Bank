@@ -24,7 +24,7 @@ Run the API:
 Open a terminal in the API project directory.
 Run dotnet restore to restore any missing dependencies.
 Run dotnet run to start the API.
-Make sure the API is running on http://localhost:5132.
+Make sure the API is running on http://localhost:5240.
 Frontend Setup 🌐
 Install Dependencies:
 
